@@ -792,25 +792,16 @@ prompt_and_setup_ssl() {
     echo -e "${green}4.${plain} Skip SSL (advanced — behind reverse proxy / SSH tunnel only)"
     echo -e "${blue}Note:${plain} Options 1 & 2 require port 80 open. Option 3 requires manual paths."
     echo -e "${blue}Note:${plain} Option 4 serves the panel over plain HTTP — only safe behind nginx/Caddy or an SSH tunnel."
-    if [[ "$NONINTERACTIVE" == "1" ]]; then
-        case "${XUI_SSL_MODE:-none}" in
-            domain) ssl_choice="1" ;;
-            ip) ssl_choice="2" ;;
-            none | "") ssl_choice="4" ;;
-            *)
-                echo -e "${yellow}Unknown XUI_SSL_MODE='${XUI_SSL_MODE}', defaulting to none (HTTP).${plain}"
-                ssl_choice="4"
-                ;;
-        esac
-    else
-        read -rp "Choose an option (default 2 for IP): " ssl_choice
-        ssl_choice="${ssl_choice// /}" # Trim whitespace
+if [[ "$NONINTERACTIVE" == "1" ]]; then
+    ssl_choice="4"
+else
+    read -rp "Choose an option (default 2 for IP): " ssl_choice
+    ssl_choice="${ssl_choice// /}"
 
-        # Default to 2 (IP cert) if input is empty or invalid (not 1, 3 or 4)
-        if [[ "$ssl_choice" != "1" && "$ssl_choice" != "3" && "$ssl_choice" != "4" ]]; then
-            ssl_choice="2"
-        fi
+    if [[ "$ssl_choice" != "1" && "$ssl_choice" != "3" && "$ssl_choice" != "4" ]]; then
+        ssl_choice="2"
     fi
+fi
 
     case "$ssl_choice" in
         1)

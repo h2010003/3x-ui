@@ -1024,11 +1024,7 @@ config_after_install() {
             echo -e "  1) SQLite     (default — recommended for < 500 clients)"
             echo -e "  2) PostgreSQL (recommended for high client counts / many nodes)"
             if [[ "$NONINTERACTIVE" == "1" ]]; then
-                if [[ "${XUI_DB_TYPE:-sqlite}" == "postgres" ]]; then
-                    db_choice="2"
-                else
-                    db_choice="1"
-                fi
+                db_choice="1"
             else
                 read -rp "Choose [1]: " db_choice
                 db_choice="${db_choice:-1}"

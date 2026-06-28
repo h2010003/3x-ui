@@ -1015,12 +1015,13 @@ config_after_install() {
             echo -e "${green}═══════════════════════════════════════════${plain}"
             echo -e "  1) SQLite     (default — recommended for < 500 clients)"
             echo -e "  2) PostgreSQL (recommended for high client counts / many nodes)"
-            if [[ "$NONINTERACTIVE" == "1" ]]; then
-                db_choice="1"
-            else
-                read -rp "Choose [1]: " db_choice
-                db_choice="${db_choice:-1}"
-            fi
+if [[ "$NONINTERACTIVE" == "1" ]]; then
+    db_choice="1"
+    echo "1"
+else
+    read -rp "Choose [1]: " db_choice
+    db_choice="${db_choice:-1}"
+fi
             if [[ "$db_choice" == "2" ]]; then
                 local xui_env_file
                 case "${release}" in

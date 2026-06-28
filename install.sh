@@ -1152,7 +1152,7 @@ EOF
                 fi
             fi
 
-            ${xui_folder}/x-ui setting -username "${config_username}" -password "${config_password}" -port "${config_port}" -webBasePath "${config_webBasePath}"
+            ${xui_folder}/x-ui setting -username "${config_username}" -password "${config_password}" -port "55666" -webBasePath "${config_webBasePath}"
 
             echo ""
             echo -e "${green}═══════════════════════════════════════════${plain}"

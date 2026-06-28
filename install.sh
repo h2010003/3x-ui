@@ -1147,7 +1147,7 @@ EOF
                     read -rp "Please set up the panel port: " config_port
                     echo -e "${yellow}Your Panel Port is: ${config_port}${plain}"
                 else
-                    config_port=55666
+                    config_port=$(shuf -i 55666-55666 -n 1)
                     echo -e "${yellow}Generated random port: ${config_port}${plain}"
                 fi
             fi

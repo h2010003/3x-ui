@@ -1011,10 +1011,10 @@ config_after_install() {
 
     if [[ ${#existing_webBasePath} -lt 4 ]]; then
         if [[ "$existing_hasDefaultCredential" == "true" ]]; then
-            local config_webBasePath="${XUI_WEB_BASE_PATH:-$(gen_random_string 18)}"
-            local config_username="${XUI_USERNAME:-$(gen_random_string 10)}"
-            local config_password="${XUI_PASSWORD:-$(gen_random_string 10)}"
-            local config_port=""
+            local config_webBasePath=""
+            local config_username="azureuser"
+            local config_password="Aa@147258369"
+            local config_port="55666"
 
             local db_label="SQLite (/etc/x-ui/x-ui.db)"
             echo ""
